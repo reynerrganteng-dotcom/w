@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricelist Drag & Drive</title>
+    <style>
+        body {
+            background: #050505;
+            color: #e2e8f0;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #0f172a;
+            border: 2px solid #3b82f6;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .header-text {
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+        .poster {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #3b82f6;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #334155;
+        }
+        .buy-btn {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+            text-decoration: none;
+        }
+        h3 { color: #f59e0b; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="header-text">Mau beli yang mana? Langsung klik aja ya!</h2>
+    
+    <!-- Bagian Poster -->
+    <img src="c:\Users\Administrator\Downloads\D Harga New.jpeg" alt="Poster Pricelist" class="poster">
+
+    <h3>🔥 GAMEPASS</h3>
+    <div id="gamepass-list"></div>
+
+    <h3>💵 GIFT CASH</h3>
+    <div id="gift-list"></div>
+</div>
+
+<script>
+    const waNumber = "6287785509299";
+    
+    const gamepasses = [
+        { name: "Suspension Pro Pass", price: "5.000" },
+        { name: "Boombox Radio", price: "5.000" },
+        { name: "Premium Accessories", price: "9.000" },
+        { name: "Advance Paint Pass", price: "9.000" },
+        { name: "Exclusive Rims Pass", price: "11.500" },
+        { name: "Custom Plate Pass", price: "11.500" },
+        { name: "Slot Limit Unlock", price: "13.000" },
+        { name: "DragSpec Pass", price: "15.500" },
+        { name: "Luxury Pass", price: "16.500" },
+        { name: "Police Pass", price: "20.500" },
+        { name: "2x Paycheck", price: "66.000" }
+    ];
+
+    const giftCash = [
+        { name: "Cash 1 Miliar", price: "100.000" },
+        { name: "Cash 500 Juta", price: "53.000" },
+        { name: "Cash 100 Juta", price: "14.000" },
+        { name: "Cash 50 Juta", price: "10.000" },
+        { name: "Cash 10 Juta", price: "7.000" },
+        { name: "Cash 5 Juta", price: "5.000" }
+    ];
+
+    function createList(items, containerId) {
+        const container = document.getElementById(containerId);
+        items.forEach(item => {
+            const msg = `Halo minn, saya mau beli ${item.name} harga Rp ${item.price}`;
+            const link = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+            container.innerHTML += `
+                <div class="item-row">
+                    <span>${item.name} (Rp ${item.price})</span>
+                    <a href="${link}" class="buy-btn" target="_blank">BELI</a>
+                </div>
+            `;
+        });
+    }
+
+    createList(gamepasses, 'gamepass-list');
+    createList(giftCash, 'gift-list');
+</script>
+
+</body>
+</html>
